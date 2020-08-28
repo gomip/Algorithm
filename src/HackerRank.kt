@@ -13,6 +13,9 @@ fun main(args: Array<String>){
 //    Q7()
 //    Q8()
 //    Q9()
+//    Q10()
+//    Q11()
+    Q12()
 }
 
 /* ---------------------------------------------------------------------------------------------------------------------
@@ -319,6 +322,106 @@ fun Q9() {
     val s = readLine()!!
 
     val result = superReducedString(s)
+
+    println(result)
+}
+
+/* ---------------------------------------------------------------------------------------------------------------------
+   Q10 (2020.08.28)
+   대각의 합 차이 구하기
+--------------------------------------------------------------------------------------------------------------------- */
+fun diagonalDifference(arr: Array<Array<Int>>): Int {
+    var ans = 0
+
+    val size = arr.size
+    var d1 = 0                  // 좌 -> 우 대각
+    var d2 = 0                  // 우 -> 좌 대각
+
+    arr.forEachIndexed { index, it ->
+        d1 += it[index]
+        d2 += it[size-index-1]
+    }
+
+    ans = d1 - d2
+
+    if (ans < 0) {              // 음수면 -1 을 곱해준다.
+        ans *= -1
+    }
+
+    return ans
+}
+
+fun Q10(){
+    val n = readLine()!!.trim().toInt()
+
+    val arr = Array<Array<Int>>(n, { Array<Int>(n, { 0 }) })
+
+    for (i in 0 until n) {
+        arr[i] = readLine()!!.trimEnd().split(" ").map{ it.toInt() }.toTypedArray()
+    }
+
+    val result = diagonalDifference(arr)
+
+    println(result)
+}
+/* ---------------------------------------------------------------------------------------------------------------------
+   Q11 (2020.08.28)
+   크기가 5인 int형 배열이 주어지면 최대합과 최소합 구하기
+--------------------------------------------------------------------------------------------------------------------- */
+fun miniMaxSum(arr: Array<Int>): Unit {
+    var min : Long= 0
+    var max : Long= 0
+
+    arr.sort()
+
+    arr.forEach{
+        println(" arr : $it")
+    }
+
+    for (i in 0 until arr.size-1){
+        min += arr[i]
+        max += arr[i+1]
+
+        println("min [$i] : $min")
+        println("max [$i] : $max")
+    }
+
+    return println("$min $max")
+}
+
+fun Q11() {
+    val scan = Scanner(System.`in`)
+
+    val arr = scan.nextLine().split(" ").map{ it.trim().toInt() }.toTypedArray()
+
+    miniMaxSum(arr)
+}
+/* ---------------------------------------------------------------------------------------------------------------------
+   Q12 (2020.08.28)
+   생일 케이크 촛불 끄기
+--------------------------------------------------------------------------------------------------------------------- */
+fun birthdayCakeCandles(ar: Array<Int>): Int {
+    var ans = 0
+
+    val max = ar.max()          // 최대값
+
+    ar.forEach {
+        if (it == max){
+            ans += 1
+        }
+    }
+
+    return ans
+}
+
+fun Q12(){
+    val scan = Scanner(System.`in`)
+
+    val arCount = scan.nextLine().trim().toInt()
+
+    val ar = scan.nextLine().split(" ").map{ it.trim().toInt() }.toTypedArray()
+
+    val result = birthdayCakeCandles(ar)
 
     println(result)
 }
