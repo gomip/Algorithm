@@ -15,8 +15,11 @@ fun main(args: Array<String>){
 //    Q9()
 //    Q10()
 //    Q11()
-    Q12()
+//    Q12()
+//    Q91()
+    Q92()
 }
+
 
 /* ---------------------------------------------------------------------------------------------------------------------
    Q1 (2020.08.05)
@@ -424,4 +427,95 @@ fun Q12(){
     val result = birthdayCakeCandles(ar)
 
     println(result)
+}
+/* ---------------------------------------------------------------------------------------------------------------------
+   Q?? (2020.09.01)
+   Run length alg
+--------------------------------------------------------------------------------------------------------------------- */
+fun Q91(){
+    val a = "aaaabbccc" // 4a2b3c
+    val b = "2a3b4c"    // aabbbcccc
+
+    val res1 = ecd(a)
+    val res2 = dcd(b)
+
+    println("encode $a: $res1 ")
+    println("decode $b: $res2 ")
+}
+
+fun ecd(a : String) : String {
+    var ans = ""
+    val tmp = a.toCharArray()
+    var cnt = 1
+    var c = ""
+    for (i in 0 until a.length){
+        if (i < a.length -1 && tmp[i] == tmp[i+1]){
+            cnt += 1
+            c = tmp[i].toString()
+        }
+        else {
+            ans += "$cnt$c"
+            cnt = 1
+            c = ""
+            continue
+        }
+    }
+    return ans
+}
+
+fun dcd(b : String) : String {
+    var ans = ""
+    val regex = """[0-9]""".toRegex()
+    var num = 0
+    var tmp = b.toCharArray()
+
+
+    for (i in 0 until b.length){
+        if(regex.matches(tmp[i].toString())){
+            num = Integer.parseInt(tmp[i].toString())
+        } else {
+            ans += tmp[i].toString().repeat(num)
+            num = 0
+            continue
+        }
+    }
+
+    return ans
+}
+/* ---------------------------------------------------------------------------------------------------------------------
+   Q?? (2020.09.01)
+   괄호닫기
+--------------------------------------------------------------------------------------------------------------------- */
+fun Q92(){
+    val b1 = "()[{]}"
+    val b2 = "(}{"
+
+    val chk1 = isClosed(b1)
+    val chk2 = isClosed(b2)
+
+    println("b1 : $chk1")
+    println("b2 : $chk2")
+}
+
+fun isClosed(str: String) : Boolean {
+    var dq : Deque<String> = LinkedList<String>()
+    var tmp = str.toCharArray()
+    var list : MutableList<String> = mutableListOf()
+
+    for (i in 0 until str.length){
+        if (tmp[i] == '(' || tmp[i] =='{' || tmp[i] == '['){
+            dq.add(tmp[i].toString())
+        } else {
+            if (dq.isNotEmpty()
+                    && (dq.peekFirst() == "(" && tmp[i]==')')
+                    || (dq.peekFirst() == "{" && tmp[i]=='}')
+                    || (dq.peekFirst() == "[" && tmp[i]==']')
+            ){
+                dq.removeFirst()
+            } else {
+                return false
+            }
+        }
+    }
+    return true
 }
