@@ -500,7 +500,6 @@ fun Q92(){
 fun isClosed(str: String) : Boolean {
     var dq : Deque<String> = LinkedList<String>()
     var tmp = str.toCharArray()
-    var list : MutableList<String> = mutableListOf()
 
     for (i in 0 until str.length){
         if (tmp[i] == '(' || tmp[i] =='{' || tmp[i] == '['){
@@ -518,4 +517,20 @@ fun isClosed(str: String) : Boolean {
         }
     }
     return true
+}
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+   Q?? (2020.09.01)
+   powerset
+--------------------------------------------------------------------------------------------------------------------- */
+fun Q93(){
+    val input = listOf(1,2,3)
+    val ans = generateSet(input)
+    println(ans)
+}
+
+fun generateSet(input : List<Int>) : MutableList<MutableList<Int>>{
+    var res : MutableList<MutableList<Int>> = mutableListOf()
+    return res
 }
