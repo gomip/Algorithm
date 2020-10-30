@@ -1,4 +1,4 @@
-package programmers
+package programmers.one
 
 /**
  * 모의고사
