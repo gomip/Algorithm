@@ -2,6 +2,7 @@ package programmers
 
 /**
  * sortedSetOf 너무 좋잖어~
+ * Level 1. 두개 뽑아서 더하기
  */
 fun solution(numbers: IntArray): IntArray {
     var answer: IntArray = intArrayOf()
