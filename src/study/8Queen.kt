@@ -8,7 +8,7 @@ var flag_dl = BooleanArray(15)                                                  
 var pos = IntArray(8)                                                                          // 각 열의 퀸 위치
 //var chess = Array(8){ StringArray(8) {"□"} }
 var chess = MutableList(8){MutableList(8, {"□"})}
-var list = mutableListOf("□")
+
 fun getPos() {                                                                                      // 각 열의 퀸 위치 출력 □■
     println("===============================")
 //    var j = 0
