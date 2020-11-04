@@ -1,22 +1,5 @@
 package hackerrank.Easy
-import java.io.*
-import java.math.*
-import java.security.*
-import java.text.*
-import java.util.*
-import java.util.concurrent.*
-import java.util.function.*
-import java.util.regex.*
-import java.util.stream.*
-import kotlin.collections.*
-import kotlin.comparisons.*
-import kotlin.io.*
-import kotlin.jvm.*
-import kotlin.jvm.functions.*
-import kotlin.jvm.internal.*
-import kotlin.ranges.*
-import kotlin.sequences.*
-import kotlin.text.*
+
 
 /*
  * Complete the 'getTotalX' function below.
@@ -35,40 +18,62 @@ import kotlin.text.*
  */
 
 // 최대 공약수
-fun findGcd(a: Array<Int>) : MutableList<Int> {
-    var res = mutableListOf<Int>()
-    var tmp = 0
-
-    for (i in a.indices){
-        tmp = gcd(tmp, a[i])
-        println("i   : ${a[i]}")
-        println("tmp : $tmp")
-        println("-----------------------")
+fun findGcd(arr: Array<Int>) : Int {
+    if (arr.size == 1){
+        return arr[0]
+    }
+    var res = arr[0]
+    for (i in arr) {
+        res = gcd(res, i)
+        if (res == 1) {
+            return 1
+        }
     }
     return res
 }
 
 fun gcd(x: Int, y: Int) : Int {
-    if (x == 0) {
-        return y
+    if (y == 0) {
+        return x
     }
-    return gcd(y % x , x)
+    return gcd(y, x % y)
 }
 
 // 최소 공배수
-fun findLcm(b: Array<Int>) : MutableList<Int> {
-    var res = mutableListOf<Int>()
-
+fun findLcm(brr: Array<Int>) : Int {
+    var res = brr[0]
+    for (i in brr) {
+        res = lcm(res, i)
+        if (res == 1){
+            return 1
+        }
+    }
     return res
 }
 
+fun lcm(x: Int, y: Int) : Int {
+    return x * y / gcd(x, y)
+}
+
 fun getTotalX(a: Array<Int>, b: Array<Int>): Int {
-    var res = 0
-    // Write your code here
     val div = findGcd(b)                                                             // 두번째 배열의 최대공약수
-//    val mul = findLcm(a)
-//    res = mul.size
-    return res
+    val mul = findLcm(a)
+
+//    println("div : $div")
+//    println("mul : $mul")
+    var count = 0
+    var index = 1
+    var comp = 0
+
+    while (comp < div) {
+        comp = mul * index
+        if (div % comp === 0) {
+            count++
+        }
+        index++
+    }
+
+    return count
 }
 
 fun main(args: Array<String>) {
