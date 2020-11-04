@@ -11,13 +11,6 @@ var chess = MutableList(8){MutableList(8, {"□"})}
 
 fun getPos() {                                                                                      // 각 열의 퀸 위치 출력 □■
     println("===============================")
-//    var j = 0
-//        if (i == j) {
-//            print("■")
-//        } else {
-//            print("□")
-//        }
-//        j+=1
     for (i in 0 until 8) {
       print("${pos[i]} ")
     }
