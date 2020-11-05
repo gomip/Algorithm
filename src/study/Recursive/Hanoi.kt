@@ -1,4 +1,4 @@
-package study
+package study.Recursive
 
 import java.util.*
 

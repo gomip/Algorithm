@@ -1,6 +1,4 @@
-package study
-
-import com.sun.xml.internal.fastinfoset.util.StringArray
+package study.Recursive
 
 var flag_col = BooleanArray(8)                                                                 // 행에 퀸을 배치했는지 확인
 var flag_dr = BooleanArray(15)                                                                 // 오른쪽 대각 확인
